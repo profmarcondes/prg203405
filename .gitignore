@@ -1,3 +1,6 @@
+## Exclude QTCreator build dir
+**/build
+
 # Prerequisites
 *.d
 
