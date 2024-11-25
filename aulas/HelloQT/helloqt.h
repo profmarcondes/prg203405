@@ -18,8 +18,8 @@ private:
     QPushButton * b_led;
     QPushButton * button;
     QVBoxLayout * layout;
-    QVBoxLayout * ledLayout;
     QHBoxLayout * topLayout;
+    QTimer      * timer;
 
 };
 #endif // HELLOQT_H

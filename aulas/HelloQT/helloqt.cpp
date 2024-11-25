@@ -8,9 +8,10 @@ HelloQT::HelloQT(QWidget *parent)
     led = new Led("LED");
     QPushButton * b_led = new QPushButton("Toggle LED");
     QObject::connect(b_led, SIGNAL(clicked()), led, SLOT(toggle()));
-    ledLayout = new QVBoxLayout;
-    ledLayout->addWidget(led);
-    ledLayout->addWidget(b_led);
+
+    timer = new QTimer();
+    QObject::connect(timer, SIGNAL(timeout()), led, SLOT(toggle()));
+    timer->start(2000);
 
     button = new QPushButton("Close");
     QObject::connect(button, SIGNAL(clicked()), this, SLOT(close()));
@@ -20,7 +21,8 @@ HelloQT::HelloQT(QWidget *parent)
 
     layout = new QVBoxLayout;
     layout->addLayout(topLayout);
-    layout->addLayout(ledLayout);
+    layout->addWidget(led);
+    layout->addWidget(b_led);
 
     setLayout(layout);
 }
