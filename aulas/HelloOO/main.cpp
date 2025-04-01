@@ -1,35 +1,24 @@
 #include <iostream>
-#include <string>
+#include "pessoa.h"
 
 using namespace std;
-
-class Pessoa {
-public:
-    string nome;
-    int idade;
-
-    void print();
-    string toString();
-};
-
-void Pessoa::print(){
-    cout << nome << "(" << idade << ")";
-}
-
-string Pessoa::toString(){
-    return nome + " (" + to_string(idade) + ")";
-}
 
 int main()
 {
     Pessoa hugo;
+    Pessoa obj2("Joao", 50);
 
-    hugo.nome = "Hugo Marcondes";
-    hugo.idade = 45;
+    obj2.print();
 
+    cout << endl << "Constructed =" << hugo.toString() << endl;
+
+    hugo.setNome("Hugo Marcondes");
+    hugo.setIdade(45);
     hugo.print();
 
-    cout << "Hello " << hugo.toString() << endl;
+    cout << "Idade = " << hugo.getIdade() << endl;
+
+    cout << endl << "Hello " << hugo.toString() << endl;
 
     return 0;
 }
