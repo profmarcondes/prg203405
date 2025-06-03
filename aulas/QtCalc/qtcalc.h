@@ -2,6 +2,8 @@
 #define QTCALC_H
 
 #include <QWidget>
+#include <QLabel>
+#include "numpad.h"
 
 class QtCalc : public QWidget
 {
@@ -9,6 +11,22 @@ class QtCalc : public QWidget
 
 public:
     QtCalc(QWidget *parent = nullptr);
-    ~QtCalc();
+
+public slots:
+    void keyInput(char key);
+
+private:
+    void doMath();
+
+private:
+    QLabel *        _value;
+    Numpad *        _numpad;
+    QVBoxLayout *   _layout;
+
+    double          _last_value;
+    char            _cur_op;
+    bool            _reset;
+
+
 };
 #endif // QTCALC_H

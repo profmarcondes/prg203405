@@ -11,6 +11,10 @@ class Numpad : public QWidget
 public:
     explicit Numpad(QWidget *parent = nullptr);
 
+    // QWidget interface
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+
 public slots:
     void keyPressed();
 
@@ -27,6 +31,8 @@ private:
     QPushButton * _period;
     QPushButton * _clear;
     QGridLayout * _layout;
+
+
 };
 
 #endif // NUMPAD_H

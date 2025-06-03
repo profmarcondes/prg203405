@@ -1,5 +1,6 @@
 #include "numpad.h"
 #include <QDebug>
+#include <QKeyEvent>
 
 Numpad::Numpad(QWidget *parent)
     : QWidget{parent}
@@ -46,6 +47,27 @@ Numpad::Numpad(QWidget *parent)
     _layout->addWidget(_period, 4, 1);
 
     setLayout(_layout);
+}
+
+void Numpad::keyPressEvent(QKeyEvent *event)
+{
+    int k = event->key();
+    if(k >= Qt::Key_0 && k <= Qt::Key_9)
+        _pad[(k-48)]->animateClick(100);
+    else if(k == Qt::Key_Plus)
+        _plus_op->animateClick(100);
+    else if(k == Qt::Key_Minus)
+        _minus_op->animateClick(100);
+    else if(k == Qt::Key_Slash)
+        _div_op->animateClick(100);
+    else if(k == Qt::Key_Asterisk)
+        _mul_op->animateClick(100);
+    else if(k == Qt::Key_Equal || k == 16777220)
+        _equal_op->animateClick(100);
+    else if(k == Qt::Key_Period)
+        _period->animateClick(100);
+    else if(k == Qt::Key_C || k == Qt::Key_Backspace)
+        _clear->animateClick(100);
 }
 
 void Numpad::keyPressed() {
