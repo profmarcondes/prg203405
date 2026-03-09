@@ -1,38 +1,85 @@
 # Laboratório 01: Implementando classes (abstrações)
 
-## Exercício 01
+## Exercício 01: Classe Pessoa e Encapsulamento
 
-Crie uma classe **Pessoa** para representar uma pessoa, com os atributos 
-privados de nome, idade e altura. Crie os métodos públicos necessários para 
-acessar e modificar os atributos desta classe e crie um método para imprimir 
-os dados da pessoa.
+Crie uma classe chamada Pessoa para representar o cadastro de um indivíduo, seguindo os pilares da Programação Orientada a Objetos.
 
-Implemente um programa de teste que utilize toda a interface da classe criada.
+1. Estrutura da Classe
+   - Atributos Privados: nome (String), idade (int) e altura (double).
+   - Construtor: Implemente um construtor que inicialize todos os atributos no momento da criação do objeto.
+   - Métodos de Acesso (Getters/Setters): Crie métodos para todos os atributos.
 
-## Exercício 02
+      Regra de Negócio: No método setIdade(), adicione uma validação para que o atributo só seja alterado se o valor for maior ou igual a idade atual.
 
-Crie uma classe denominada **Elevador** para armazenar as informações de um
-elevador dentro de um prédio. A classe deve armazenar o andar atual (0 =
-térreo), total de andares no prédio, excluindo o térreo, capacidade do elevador,
-e quantas pessoas que estão presentes nele.
+2. Comportamentos (Métodos)
+   - fazerAniversario(): Um método que não recebe parâmetros e, quando chamado, incrementa a idade da pessoa em 1 ano.
+   - exibirDados(): Um método que imprima no console todas as informações da pessoa (Nome, Idade e Altura) de forma formatada.
 
-A classe deve implementar a seguinte interface:
-
-- ***Construtor***: Deve receber como parâmetros: a capacidade do elevador e o
-total de andares no prédio (os elevadores sempre começam no térreo e vazios);
-**
-- ***entra***: Acrescenta uma pessoa no elevador (só deve acrescentar se ainda
-houver espaço);
-
-- ***sai***: para remover uma pessoa do elevador (só deve remover se houver alguém
-dentro dele);
-
-- ***sobe***: para subir um andar (não deve subir se já estiver no último andar);
+3. Programa de Teste
   
-- ***desce***: para descer um andar (não deve descer se já estiver no térreo);
+    Implemente uma classe Principal com o método main para realizar as seguintes ações:
+
+      - Instanciar um objeto Pessoa.
+      - Exibir os dados iniciais utilizando o método exibirDados().
+      - Utilizar o método fazerAniversario().
+      - Tentar alterar a idade para um valor inválido (ex: -5) e verificar se a validação funcionou.
+      - Exibir os dados atualizados para confirmar as mudanças.
+
+
+## Exercício 02: Sistema de Controle de Elevador
+
+Crie uma classe chamada Elevador que gerencie o estado e o movimento de um elevador de forma segura.
+
+1. Estrutura e Estado Inicial
+
+  - Atributos Privados: 
+    - andarAtual (int)
+    - totalAndares (int - desconsiderando o térreo)
+    - capacidade (int)
+    - qtdPessoas (int)
+
+  - Construtor: Deve receber a capacidade do elevador e o totalAndares do prédio.
   
-- ***Métodos de acesso aos atributos***: retorna o valor de cada atributo da
-  classe. Crie um método para cada atributo
+        Regra: Todo elevador deve obrigatoriamente iniciar no térreo (0) e vazio (0).
+
+2. Interface de Operação (Métodos)
+   
+Implemente a lógica de segurança para cada operação:
+
+  - entrar(): Adiciona uma pessoa.
+  
+        Condição: Só é permitido se a qtdPessoas for menor que a capacidade. Caso contrário, exiba uma mensagem de "Elevador Lotado".
+
+  - sair(): Remove uma pessoa.
+
+        Condição: Só é permitido se qtdPessoas for maior que 0.
+
+  - subir(): Move o elevador para o próximo andar.
+
+        Condição: Não pode subir se já estiver no último andar.
+
+  - descer(): Move o elevador para o andar anterior.
+
+        Condição: Não pode descer se já estiver no térreo (0).
+
+  - status(): Método que imprime a situação atual (Ex: "Andar: 2 | Pessoas: 3/10").
+
+3. Métodos de Acesso (Getters)
+
+    Implemente métodos para retornar os valores de cada atributo. **Atenção:** Não crie métodos Setters para andarAtual ou qtdPessoas, pois esses valores só devem ser alterados pelos métodos de operação (entrar, subir, etc.), garantindo a integridade dos dados.
+
+4. Programa de Teste
+  
+    Crie uma classe SimuladorElevador para validar a lógica:
+
+     1. Instancie um elevador para 5 pessoas em um prédio de 10 andares.
+
+     2. Tente subir quando estiver no último andar para testar o limite.
+
+     3. Tente remover pessoas de um elevador vazio.
+
+     4. Encha o elevador até a capacidade máxima e tente adicionar mais uma pessoa.
+
 
 ## Exercício 03
 
