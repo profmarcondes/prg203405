@@ -6,13 +6,16 @@ Crie uma classe chamada Pessoa para representar o cadastro de um indivíduo, seg
 
 1. Estrutura da Classe
    - Atributos Privados: nome (String), idade (int) e altura (double).
+ 
    - Construtor: Implemente um construtor que inicialize todos os atributos no momento da criação do objeto.
+ 
    - Métodos de Acesso (Getters/Setters): Crie métodos para todos os atributos.
-
-      Regra de Negócio: No método setIdade(), adicione uma validação para que o atributo só seja alterado se o valor for maior ou igual a idade atual.
+  
+      **Regra de Negócio:** No método setIdade(), adicione uma validação para que o atributo só seja alterado se o valor for maior ou igual a idade atual.
 
 2. Comportamentos (Métodos)
    - fazerAniversario(): Um método que não recebe parâmetros e, quando chamado, incrementa a idade da pessoa em 1 ano.
+ 
    - exibirDados(): Um método que imprima no console todas as informações da pessoa (Nome, Idade e Altura) de forma formatada.
 
 3. Programa de Teste
@@ -20,9 +23,13 @@ Crie uma classe chamada Pessoa para representar o cadastro de um indivíduo, seg
     Implemente uma classe Principal com o método main para realizar as seguintes ações:
 
       - Instanciar um objeto Pessoa.
+ 
       - Exibir os dados iniciais utilizando o método exibirDados().
+ 
       - Utilizar o método fazerAniversario().
+ 
       - Tentar alterar a idade para um valor inválido (ex: -5) e verificar se a validação funcionou.
+ 
       - Exibir os dados atualizados para confirmar as mudanças.
 
 
