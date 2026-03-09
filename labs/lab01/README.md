@@ -1,189 +1,166 @@
 # Laboratório 01: Implementando classes (abstrações)
 
-## Exercício 01: Classe Pessoa e Encapsulamento
+# Exercício 1: Classe Pessoa 👤
 
-Crie uma classe chamada Pessoa para representar o cadastro de um indivíduo, seguindo os pilares da Programação Orientada a Objetos.
+Este exercício foca nos conceitos de **Encapsulamento**, **Construtores** e **Regras de Negócio** básicas.
 
-1. Estrutura da Classe
-   - Atributos Privados: nome (String), idade (int) e altura (double).
- 
-   - Construtor: Implemente um construtor que inicialize todos os atributos no momento da criação do objeto.
- 
-   - Métodos de Acesso (Getters/Setters): Crie métodos para todos os atributos.
-  
-      **Regra de Negócio:** No método setIdade(), adicione uma validação para que o atributo só seja alterado se o valor for maior ou igual a idade atual.
+## 🎯 Objetivo
+Criar uma classe para representar uma pessoa e garantir que seus dados sejam manipulados de forma segura através de métodos de acesso.
 
-2. Comportamentos (Métodos)
-   - fazerAniversario(): Um método que não recebe parâmetros e, quando chamado, incrementa a idade da pessoa em 1 ano.
- 
-   - exibirDados(): Um método que imprima no console todas as informações da pessoa (Nome, Idade e Altura) de forma formatada.
+## 🛠️ Especificações Técnicas
 
-3. Programa de Teste
-  
-    Implemente uma classe Principal com o método main para realizar as seguintes ações:
+### 1. Atributos (Privados)
+- `nome`: Texto (String).
+- `idade`: Inteiro (int).
+- `altura`: Decimal (double).
 
-      - Instanciar um objeto Pessoa.
- 
-      - Exibir os dados iniciais utilizando o método exibirDados().
- 
-      - Utilizar o método fazerAniversario().
- 
-      - Tentar alterar a idade para um valor inválido (ex: -5) e verificar se a validação funcionou.
- 
-      - Exibir os dados atualizados para confirmar as mudanças.
+### 2. Métodos Obrigatórios
+| Método | Descrição |
+| :--- | :--- |
+| **Construtor** | Recebe e inicializa `nome`, `idade` e `altura`. |
+| `Getters / Setters` | Métodos de acesso para todos os atributos. |
+| `fazerAniversario()` | Incrementa a `idade` em 1 unidade. |
+| `exibirDados()` | Imprime todos os atributos formatados no console. |
 
+## ⚠️ Regras de Negócio
+1. **Validação de Idade:** O método `setIdade()` não deve permitir valores menores que zero.
+2. **Integridade:** O objeto deve ser criado obrigatoriamente com todos os dados preenchidos via construtor.
 
-## Exercício 02: Sistema de Controle de Elevador
-
-Crie uma classe chamada Elevador que gerencie o estado e o movimento de um elevador de forma segura.
-
-1. Estrutura e Estado Inicial
-
-  - Atributos Privados: 
-    - andarAtual (int)
-    - totalAndares (int - desconsiderando o térreo)
-    - capacidade (int)
-    - qtdPessoas (int)
-
-  - Construtor: Deve receber a capacidade do elevador e o totalAndares do prédio.
-  
-        Regra: Todo elevador deve obrigatoriamente iniciar no térreo (0) e vazio (0).
-
-2. Interface de Operação (Métodos)
-   
-Implemente a lógica de segurança para cada operação:
-
-  - entrar(): Adiciona uma pessoa.
-  
-        Condição: Só é permitido se a qtdPessoas for menor que a capacidade. Caso contrário, exiba uma mensagem de "Elevador Lotado".
-
-  - sair(): Remove uma pessoa.
-
-        Condição: Só é permitido se qtdPessoas for maior que 0.
-
-  - subir(): Move o elevador para o próximo andar.
-
-        Condição: Não pode subir se já estiver no último andar.
-
-  - descer(): Move o elevador para o andar anterior.
-
-        Condição: Não pode descer se já estiver no térreo (0).
-
-  - status(): Método que imprime a situação atual (Ex: "Andar: 2 | Pessoas: 3/10").
-
-3. Métodos de Acesso (Getters)
-
-    Implemente métodos para retornar os valores de cada atributo. **Atenção:** Não crie métodos Setters para andarAtual ou qtdPessoas, pois esses valores só devem ser alterados pelos métodos de operação (entrar, subir, etc.), garantindo a integridade dos dados.
-
-4. Programa de Teste
-  
-    Crie uma classe SimuladorElevador para validar a lógica:
-
-     1. Instancie um elevador para 5 pessoas em um prédio de 10 andares.
-
-     2. Tente subir quando estiver no último andar para testar o limite.
-
-     3. Tente remover pessoas de um elevador vazio.
-
-     4. Encha o elevador até a capacidade máxima e tente adicionar mais uma pessoa.
+## 🧪 Roteiro de Teste
+1. Instancie uma pessoa (Ex: "João", 25 anos, 1.75m).
+2. Chame o método `exibirDados()`.
+3. Utilize `fazerAniversario()` e verifique se a idade mudou.
+4. Tente definir uma idade negativa via `setIdade()` e valide se o sistema bloqueou a alteração.
 
 
-## Exercício 03
+# Exercício 2: Sistema de Elevador 🛗
 
-Crie uma classe em C++ chamada **Relogio** para armazenar um horário, composto
-por hora, minuto e segundo. A classe deve representar esses componentes de
-horário e deve apresentar os métodos descritos a seguir:
+Este exercício foca em **Controle de Estado**, impedindo que um objeto assuma valores impossíveis na vida real.
 
-- um método chamado ***setHorario***, que deve receber o horário desejado por
-parâmetro (hora, minuto e segundo);
+## 🎯 Objetivo
+Modelar o funcionamento de um elevador, controlando o fluxo de pessoas e o deslocamento entre andares com validações de segurança.
 
-- um método chamado ***getHorario*** para retornar o horário atual, através de 3
-variáveis passadas por referência;
+## 🛠️ Especificações Técnicas
 
-- um método chamado ***tick*** para avançar o horário para o próximo segundo (lembre-se de
-atualizar o minuto e a hora, quando for o caso).
+### 1. Atributos (Privados)
+- `andarAtual`: Andar onde o elevador está (0 = térreo).
+- `totalAndares`: Capacidade máxima de andares do prédio (excluindo o térreo).
+- `capacidade`: Limite máximo de pessoas.
+- `qtdPessoas`: Quantidade atual de pessoas no interior.
+
+### 2. Métodos de Operação
+| Método | Regra de Segurança |
+| :--- | :--- |
+| `entrar()` | Só adiciona se `qtdPessoas < capacidade`. |
+| `sair()` | Só remove se `qtdPessoas > 0`. |
+| `subir()` | Só sobe se `andarAtual < totalAndares`. |
+| `descer()` | Só desce se `andarAtual > 0`. |
+| `status()` | Exibe o andar e a lotação atual (Ex: 5/10 pessoas). |
+
+## ⚠️ Regras de Design (POO)
+1. **Estado Inicial:** O construtor deve receber a `capacidade` e `totalAndares`. O elevador **sempre** começa no térreo (0) e vazio.
+2. **Encapsulamento:** Não devem existir métodos *Setters* para `andarAtual` ou `qtdPessoas`. O estado só muda através dos métodos de operação.
+
+## 🧪 Roteiro de Teste
+1. Crie um elevador para 5 pessoas em um prédio de 10 andares.
+2. Tente `descer()` estando no térreo (deve ser bloqueado).
+3. Adicione 6 pessoas e verifique se o elevador barra a última entrada.
+4. Suba até o último andar e tente `subir()` novamente.
 
 
-## Exercício 04
 
-Definir uma classe que abstraia um círculo
+# Exercício 3O: Sistema de Biblioteca 📚
 
-Esta classe deve possuir métodos **privados** para:
+Este exercício foca em **Encapsulamento**, **Estado de Objeto** e **Lógica de Validação**.
 
-- calcular a área do cı́rculo;
-- calcular a distância entre os centros de 2 cı́rculos;
-- calcular a circunferência do cı́rculo.
+## 🎯 Objetivo
+Implementar uma classe `Livro` que controle o progresso de leitura e o status de disponibilidade.
 
-E métodos **públicos** para:
-- definir o raio do cı́rculo, dado um número real;
-- aumentar o raio do cı́rculo, dado um percentual de aumento;
-- definir o centro do cı́rculo, dada uma posição (X,Y);
-- imprimir o valor do raio;
-- imprimir o centro do cı́rculo;
-- imprimir a área do cı́rculo;
-- imprimir a distância de um outro círculo (parâmetro);
+## 🛠️ Especificações Técnicas
 
-Criar um programa principal para testar a classe.
+### 1. Atributos (Privados)
+- `titulo`: Nome do livro.
+- `autor`: Nome do autor.
+- `totalPaginas`: Quantidade total de páginas.
+- `paginaAtual`: Página onde o leitor parou.
+- `emprestado`: Status de disponibilidade (verdadeiro/falso).
 
-## Exercício 05
+### 2. Métodos Obrigatórios
+| Método | Descrição |
+| :--- | :--- |
+| `emprestar()` | Muda o status para emprestado (se disponível). |
+| `devolver()` | Torna o livro disponível e reseta o progresso. |
+| `folhear(int qtd)` | Adiciona páginas à `paginaAtual` (limite no total). |
+| `detalhes()` | Exibe todos os dados do livro e % de leitura. |
 
-Implemente uma classe para abstrair uma televisão. A televisão tem um controle
-de volume do som e um controle de seleção de canal.
+## ⚠️ Regras de Negócio
+1. O método `folhear()` só deve funcionar se o livro estiver **emprestado**.
+2. A `paginaAtual` nunca pode ser negativa ou maior que o `totalPaginas`.
+3. O progresso deve ser calculado como: `(paginaAtual / totalPaginas) * 100`.
 
-A classe implementada deve atender aos seguintes requisitos mínimos:
+---
+*Dica: Utilize o tipo `double` para o cálculo da porcentagem para evitar truncamento de inteiros.*
 
-- O controle de volume permite aumentar ou diminuir a potência do volume de som
-em uma unidade de cada vez.
+# Exercício 4: Simulador de Ar-Condicionado ❄️
 
-- A potência do volume deve ter valores discretos no intervalo [0 , 100].
+Este exercício explora a implementação de **Lógica de Negócio**, **Constantes** e **Controle de Estado**.
 
-- O controle de canal também permite aumentar e diminuir o número do canal em
-uma unidade
+## 🎯 Objetivo
+Modelar um sistema de ar-condicionado que calcula a temperatura de um ambiente com base na potência selecionada e na temperatura externa.
 
-- A interface também deve possibilitar a trocar para um canal indicado.
+## 🛠️ Especificações Técnicas
 
-- 0s canais dever ter valores discretos no intervalo [0 , 75].
+### 1. Atributos (Privados)
+- `potencia`: Inteiro entre 0 (mínimo) e 10 (máximo).
+- `ligado`: Booleano que indica se o aparelho está operando.
 
-- Também devem existir métodos para consultar o valor do volume de som e o canal
-selecionado.
+### 2. Comportamentos (Métodos)
+| Método | Descrição |
+| :--- | :--- |
+| `ligar()` / `desligar()` | Altera o estado de energia do aparelho. |
+| `setPotencia(int p)` | Define a potência, validando o intervalo [0 - 10]. |
+| `getTemperatura(double externa)` | Retorna a temperatura resultante no ambiente. |
 
-Caso julgar necessário, adicione na interface desta abstração, outros
-comportamentos que julgar necessários
+## ⚠️ Regras de Cálculo
+1. Cada nível de potência reduz a temperatura em **1.8°C**.
+2. Se o aparelho estiver **desligado**, a temperatura ambiente será idêntica à temperatura externa, independente da potência configurada.
+3. A redução máxima permitida é de **18°C** (Potência 10).
 
-Elabore um programa para realizar o teste da sua abstração. Lembre-se de
-realizar um teste completo da sua interface.
+## 🧪 Exemplo de Teste
+1. **Ar A:** Potência 5, Temp. Externa 25°C → **Resultado esperado: 16.0°C**
+2. **Ar B:** Potência 10, Temp. Externa 31°C → **Resultado esperado: 13.0°C**
 
-## Exercício 06
 
-Implemente a abstração de um equipamento de ar condicionado, com os seguintes
-requisitos:
+# Exercício 5: Abstração de Veículo e Autonomia 🚗
 
-- O condicionador possui 10 potências diferentes.  
-- Cada unidade da potência do condicionador diminui a temperatura do ambiente em
-  1.8° C.
-- A variação que o condicionador consegue causar está no intervalo [0° C - 18°
-  C], ou seja, zero graus de variação quando desligado e dezoito graus de
-  variação quando ligado na potência máxima.
-- Através de um sensor, o condicionador é informado da temperatura externa. Dada
-  essa temperatura e a potência selecionada, o condicionador calcula e retorna a
-  temperatura do ambiente.
+Este exercício foca em **Lógica de Interdependência** e **Gestão de Recursos** dentro de um objeto.
 
-No programa principal, crie dois condicionadores. Informe duas temperaturas
-externas diferentes para cada um (ex: 25° C e 31° C), ajuste o segundo em
-potência máxima (10) e o primeiro em potência média (5). Finalmente, exiba a
-temperatura resultante de cada ambiente.
+## 🎯 Objetivo
+Implementar um sistema que simule o consumo de combustível de um carro, respeitando limites físicos de armazenamento e autonomia.
 
-## Exercício 07
+## 🛠️ Especificações Técnicas
 
-Implemente uma abstração de um carro. O tanque de combustı́vel do carro armazena
-no máximo 50 litros de gasolina. O carro consome 15 km/litro. Deve ser
-possı́vel:
+### 1. Atributos e Configurações
+- `combustivelTanque`: Nível atual de gasolina.
+- `distanciaTotal`: Quilometragem total acumulada.
+- **Consumo:** O carro consome fixamente **1 litro a cada 15 km**.
+- **Tanque:** Capacidade máxima de **50 litros**.
 
-- Abastecer o carro com uma certa quantidade de gasolina;
-- Mover o carro em uma determinada distância (medida em km);
-- Retornar a quantidade de combustı́vel e a distância total percorrida.
+### 2. Comportamentos (Métodos)
+| Método | Descrição |
+| :--- | :--- |
+| `abastecer(litros)` | Adiciona combustível respeitando o limite de 50L. |
+| `mover(distancia)` | Reduz o combustível e aumenta a quilometragem se possível. |
+| `getCombustivel()` | Retorna a quantidade de litros atual. |
+| `getDistancia()` | Retorna o total percorrido (odômetro). |
 
-Elabore um programa para realizar o teste da sua abstração. Lembre-se de
-realizar um teste completo da sua interface e considerar possíveis inconsistências
-de estado (ex. um carro não pode percorrer uma certa distância se ele não
-possuir combustível suficiente para isto).
+## ⚠️ Regras de Validação
+1. **Limite de Tanque:** Se o usuário tentar abastecer 60L em um tanque de 50L, o sistema deve ignorar o excesso.
+2. **Autonomia:** O carro não pode "andar" mais do que o combustível permite. Se a distância solicitada for maior que a autonomia, o carro para onde o combustível acabar.
+3. **Pane Seca:** Informe ao usuário caso o carro pare antes da distância solicitada por falta de gasolina.
+
+## 🧪 Exemplo de Cálculo
+- **Abastecer:** 10 litros.
+- **Mover:** 150 km.
+- **Resultado:** Combustível = 0L | Distância = 150 km.
+
